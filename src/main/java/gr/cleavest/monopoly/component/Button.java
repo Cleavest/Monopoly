@@ -7,6 +7,7 @@ public class Button extends Component {
     private String text;
     private ButtonClickHandler buttonClickHandler;
     private boolean isHovered = false;
+    private boolean isToggled = true;
 
     public Button(String text, int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -15,6 +16,11 @@ public class Button extends Component {
 
     public Button addHandler(ButtonClickHandler buttonClickHandler) {
         this.buttonClickHandler = buttonClickHandler;
+        return this;
+    }
+
+    public Button setToggled(boolean toggled) {
+        this.isToggled = toggled;
         return this;
     }
 
@@ -36,9 +42,16 @@ public class Button extends Component {
         Color hoverColor = new Color(114, 165, 247);    // #72a5f7
         Color hoverLighterColor = new Color(138, 181, 249); // #8ab5f9
 
+        Color toggle = new Color(112, 112, 112);
+
         // Επιλογή χρωμάτων με βάση την κατάσταση hover
         Color baseColor = isHovered ? hoverColor : normalColor;
         Color topColor = isHovered ? hoverLighterColor : lighterColor;
+
+        if (!isToggled) {
+            baseColor = toggle;
+            topColor = toggle;
+        }
 
         // Δημιουργία gradient
         GradientPaint gradient = new GradientPaint(
@@ -76,15 +89,15 @@ public class Button extends Component {
     }
 
     @Override
-    public void onClick() {
-        if (buttonClickHandler != null) {
+    public void onClick() throws InterruptedException {
+        if (buttonClickHandler != null && isToggled) {
             buttonClickHandler.onClick(this);
         }
     }
 
     @FunctionalInterface
     public interface ButtonClickHandler {
-        void onClick(Button button);
+        void onClick(Button button) throws InterruptedException;
     }
 
     public void setText(String value) {

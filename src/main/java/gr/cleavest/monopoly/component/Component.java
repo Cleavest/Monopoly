@@ -20,13 +20,13 @@ public abstract class Component {
         this.height = height;
     }
     public abstract void draw(Graphics2D graphics2D);
-    public abstract void onClick();
+    public abstract void onClick() throws InterruptedException;
     public boolean isHovered(MouseEvent e) {
         int cursorX = e.getX();
         int cursorY = e.getY();
         return (cursorX >= x && cursorX <= (x + width) && cursorY >= y && cursorY <= (y + height));
     }
-    public void click(MouseEvent e) {
+    public void click(MouseEvent e) throws InterruptedException {
         if (isHovered(e)) {
             onClick();
         }

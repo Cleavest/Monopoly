@@ -1,7 +1,9 @@
 package gr.cleavest.monopoly.game.field.category;
 
 import gr.cleavest.monopoly.game.field.Field;
+import gr.cleavest.monopoly.game.field.FieldController;
 import gr.cleavest.monopoly.game.player.Player;
+import gr.cleavest.monopoly.gamestate.Container;
 import gr.cleavest.monopoly.gamestate.state.Recor;
 import gr.cleavest.monopoly.utils.ImageLoader;
 import gr.cleavest.monopoly.utils.Reference;
@@ -22,7 +24,7 @@ public class ChanceField extends Field {
     }
 
     @Override
-    public void stay(Player player) {
+    public void stay(Player player, Container container, FieldController fieldController) {
 
     }
 

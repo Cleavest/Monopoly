@@ -37,6 +37,11 @@ public class ContainerController {
     }
 
     public void update() {
+        try {
+            states.get(currentState).updateQueue();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         states.get(currentState).update();
     }
 

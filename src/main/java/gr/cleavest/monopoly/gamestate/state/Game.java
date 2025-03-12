@@ -1,6 +1,7 @@
 package gr.cleavest.monopoly.gamestate.state;
 
 import gr.cleavest.monopoly.component.Button;
+import gr.cleavest.monopoly.component.TestButton;
 import gr.cleavest.monopoly.game.field.Field;
 import gr.cleavest.monopoly.game.field.FieldController;
 import gr.cleavest.monopoly.game.field.category.*;
@@ -14,10 +15,7 @@ import gr.cleavest.monopoly.utils.Square;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.function.Consumer;
 
 /**
  * @author Cleavest on 1/3/2025
@@ -36,7 +34,6 @@ public class Game extends Container {
 
     private List<Player> players = new ArrayList<>();
     private Square[] squares;
-    private List<Runnable> updateQueue = new ArrayList<>();
 
     int[][] playerOffsets = {
             {5, 5},   // Παίκτης 1: (x + 5, y + 5)
@@ -47,7 +44,6 @@ public class Game extends Container {
 
     private int firstDice = -1;
     private int secondDice = -1;
-
     private int nextPlayer;
 
 
@@ -62,32 +58,35 @@ public class Game extends Container {
 
         addComponent(new Button("Back", 1280-100,720-60 , 80,40).addHandler(button -> {
             containerController.setContainer(ContainerController.MENU);
-        }));
+        }).setToggled(true));
 
-        Player first = new Player(1, Color.YELLOW);
-        Player second = new Player(2, Color.GREEN);
-        Player second2 = new Player(4, Color.RED);
+        Player first = new Player( Color.YELLOW);
+        Player second = new Player( Color.GREEN);
+        Player second2 = new Player( Color.RED);
         players.add(first);
         players.add(second);
         players.add(second2);
 
-        addComponent(new Button("Dice", 200,200 , 80,40).addHandler(button -> {
+        addComponent(new Button("Dice", 250,450 , 95,40).addHandler(button -> {
             firstDice = throwDie();
             secondDice = throwDie();
 
-            updateQueue.add(() -> {
+            addUpdateQueue(() -> {
 
                 Player player = players.get(nextPlayer);
 
                 player.move(firstDice + secondDice);
 
-                Field field = fieldController.getFields()[nextPlayer];
-                field.stay(player);
-
+                Field field = fieldController.getFields()[player.getPosition()];
+                this.clearSecondComponents();
+                field.stay(player, this, fieldController);
                 nextPlayer = (nextPlayer + 1) % players.size();
-
             });
         }));
+
+//        addComponent(new TestButton("test" ,250, 460, 120, 40).addHandler(button -> {
+//            System.out.println("test");
+//        }));
     }
 
     private int throwDie()
@@ -139,9 +138,7 @@ public class Game extends Container {
 
     @Override
     public void update() {
-        updateQueue.forEach(Runnable::run);
 
-        updateQueue.clear();
     }
 
     @Override
@@ -175,8 +172,30 @@ public class Game extends Container {
                 }
             });
 
-            drawDice(g2,400,400);
-            drawAvatarPlayer(g2, Reference.BOARD_SIZE + 20, 20);
+            //drawDice(g2,400,400);
+
+            GraphicsUtil.drawSmoothDice(g2, 250, 400, 40, firstDice);
+            GraphicsUtil.drawSmoothDice(g2, 300, 400, 40, secondDice);
+            drawAvatarPlayer(g2, Reference.startFieldInteract, 20, 250, 80);
+
+
+            //drawPlayerCard(g2, players.get(0), Reference.startFieldInteract, 400, true);
+            //drawPlayerCard(g2, players.get(1), Reference.startFieldInteract, 400 + 150, false);
+
+//            int lastPlayerPosition = nextPlayer - 1;
+//            if (lastPlayerPosition == -1) {
+//                lastPlayerPosition = 0;
+//            }
+//
+//            Player player = players.get(lastPlayerPosition);
+//            int playerPosition = player.getPosition();
+
+            //Field proper = fieldController.getFields()[playerPosition];
+//            if (proper instanceof PropertyField){
+//                ((PropertyField) proper).getComponents().forEach(component -> {
+//                    component.draw(g2);
+//                });
+//            }
         }
     }
 
@@ -211,50 +230,55 @@ public class Game extends Container {
         g2.setTransform(oldTransform);
     }
 
-    private void drawDice(Graphics2D g2, int x, int y) {
-        int diceSize = 30;
-        int split = 10;
+//    private void drawAvatarPlayer(Graphics2D g2, int x, int y) {
+//        int space = 20;
+//
+//        int width = 75;
+//        //int height = 75;
+//
+//        AffineTransform originalTransform = g2.getTransform();
+//        Stroke originalStroke = g2.getStroke();
+//
+//        g2.setStroke(new BasicStroke(2));
+//
+//        for (int i = 0; i < players.size(); i++) {
+//            Player player = players.get(i);
+//
+//
+//            if (nextPlayer == i) {
+//                g2.setColor(player.getColor());
+//                g2.fillRect(x ,y,width,Reference.AVATAR_HEIGHT);
+//            }
+//            g2.setColor(player.getColor());
+//            g2.drawRect(x ,y,width,Reference.AVATAR_HEIGHT);
+//
+//            g2.setColor(Color.BLACK);
+//            g2.drawString( player.getBalance() + "$", x + space, y + space);
+//
+//            x += space + width;
+//        }
+//
+//        g2.setTransform(originalTransform);
+//        g2.setStroke(originalStroke);
+//    }
 
-        int width = diceSize * 2 + split * 3;
-        int height = diceSize + split * 2;
-
-        g2.drawRect(x,y,width,height);
-
-        g2.drawRect(x + split, y + split, diceSize, diceSize);
-        g2.drawString(firstDice+"",x + split + diceSize / 2,y + split + diceSize / 2);
-        g2.drawRect(x + split * 2 + diceSize, y + split, diceSize, diceSize);
-        g2.drawString(secondDice+"",x + split * 2 + diceSize + diceSize/2,y + split + diceSize / 2);
-    }
-
-    private void drawAvatarPlayer(Graphics2D g2, int x, int y) {
+    private void drawAvatarPlayer(Graphics2D g2, int x, int y, int width, int height) {
         int space = 20;
 
-        int width = 75;
-        int height = 75;
-
-        AffineTransform originalTransform = g2.getTransform();
-        Stroke originalStroke = g2.getStroke();
-
-        g2.setStroke(new BasicStroke(2));
+        //g2.setStroke(new BasicStroke(2));
 
         for (int i = 0; i < players.size(); i++) {
             Player player = players.get(i);
 
+            GraphicsUtil.drawPlayerCard(g2, player, x, y,width,height ,nextPlayer == i);
 
-            if (nextPlayer == i) {
-                g2.setColor(player.getColor());
-                g2.fillRect(x ,y,width,height);
-            }
-            g2.setColor(player.getColor());
-            g2.drawRect(x ,y,width,height);
-
-            g2.setColor(Color.BLACK);
-            g2.drawString( player.getBalance() + "$", x + space, y + space);
-
-            x += space + width;
+            y += 80 + space;
         }
 
-        g2.setTransform(originalTransform);
-        g2.setStroke(originalStroke);
+        g2.setColor(Color.BLACK);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
     }
 }

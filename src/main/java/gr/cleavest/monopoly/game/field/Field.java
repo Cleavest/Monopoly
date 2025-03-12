@@ -1,6 +1,7 @@
 package gr.cleavest.monopoly.game.field;
 
 import gr.cleavest.monopoly.game.player.Player;
+import gr.cleavest.monopoly.gamestate.Container;
 import gr.cleavest.monopoly.utils.GraphicsUtil;
 import gr.cleavest.monopoly.utils.Reference;
 
@@ -18,7 +19,7 @@ public abstract class Field {
         this.positionId = positionId;
     }
 
-    public abstract void stay(Player player);
+    public abstract void stay(Player player, Container container, FieldController fieldController);
 
     public abstract void draw(Graphics2D g2,int x, int y);
 

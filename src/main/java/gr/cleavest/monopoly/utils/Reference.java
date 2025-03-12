@@ -30,4 +30,8 @@ public class Reference {
     public static final int SQUARE_WIDTH = 55;
     public static final int BOARD_SIZE = 2 * SQUARE_HEIGHT + SQUARE_WIDTH * 9;
     public static final int FIELD_SIZE = 40;
+
+    public static final int startFieldInteract = BOARD_SIZE + 40;
+    public static final int AVATAR_HEIGHT = 75;
+    public static final Font buttonFont = new Font("Arial", Font.BOLD, 10);
 }
