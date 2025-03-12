@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
  */
 public class UtilityField extends Field {
 
-    private BufferedImage image;
+    private final BufferedImage image;
     public UtilityField(int positionId) {
         super(positionId);
         this.image = ImageLoader.loadImage(Reference.LUXURY);

@@ -20,7 +20,7 @@ public class RailRoadField extends Field {
     private final BufferedImage image;
     private Player owner;
     private final String name;
-    private int price;
+    private final int price;
     private final int[] pricing = {0, 25,50,100,200};
 
     public RailRoadField(int positionId, String name) {
