@@ -16,3 +16,8 @@
 ## 📊 Gantt Chart
 
 ![Gantt Chart](./images/gantt_chart.png)
+
+## 🧩 Διάγραμμα Περιπτώσεων Χρήσης
+
+![Διάγραμμα Περιπτώσεων Χρήσης](./USE_CASE_SEQUENCE_DIAGRAMMS
+/MonopolyUseCase.svg)
