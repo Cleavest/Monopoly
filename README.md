@@ -12,3 +12,7 @@
 | Αντώνιος     | Γιατζής           | ICS25204 | QA Engineer / Tester       |
 | Περικλής     | Γιαννίκος         | ICS22097 | Project Manager            |
 | Παναγιώτης   | Χατζηκαλλιάς      | ICS24115 | Developer                  |
+
+## 📊 Gantt Chart
+
+![Gantt Chart](./images/gantt_chart.png)
