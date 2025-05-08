@@ -1,0 +1,131 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.14">
+  <diagram name="Page-1" id="g9CBpRAw_AVowHYRX5BA">
+    <mxGraphModel dx="1042" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-1" value="Φυλακή" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry width="850" height="510" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-3" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="20" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-4" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="DJN-NzJyCzIiPwxfxdfg-3">
+          <mxGeometry x="5" y="40" width="10" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-5" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlBoundary;" vertex="1" parent="1">
+          <mxGeometry x="220" y="40" width="50" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-7" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="DJN-NzJyCzIiPwxfxdfg-5">
+          <mxGeometry x="20" y="40" width="10" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-8" value="UI" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
+          <mxGeometry x="205" y="14" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-9" value="Player" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="20" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-10" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlControl;" vertex="1" parent="1">
+          <mxGeometry x="450" y="40" width="40" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-12" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="DJN-NzJyCzIiPwxfxdfg-10">
+          <mxGeometry x="15" y="40" width="10" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-11" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlEntity;" vertex="1" parent="1">
+          <mxGeometry x="710" y="40" width="40" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-13" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="DJN-NzJyCzIiPwxfxdfg-11">
+          <mxGeometry x="15" y="40" width="10" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-14" value="Game Controller" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="20" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-15" value="Board" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="20" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-16" value="Ρίχνει Ζάρια" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-5">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="70" y="100" as="sourcePoint" />
+            <mxPoint x="150" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-17" value="μετακίνησηΠιονιού(ζάρια)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-10">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="240" y="120" as="sourcePoint" />
+            <mxPoint x="320" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-18" value="υπολογισμόςΝέαςΘέσης(τρέχουσαΘέση,ζάρια)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-11">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="470" y="140" as="sourcePoint" />
+            <mxPoint x="550" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-20" value="νέαΘέση" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="170" as="sourcePoint" />
+            <mxPoint x="650" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-21" value="έλεγχοςΝέαςΘέσης(νέαΘέση)" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-11">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="470" y="200" as="sourcePoint" />
+            <mxPoint x="550" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-23" value="λήψηΘέσηςΦυλακής()" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-13">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="470" y="270" as="sourcePoint" />
+            <mxPoint x="550" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-24" value="θέσηΦυλακής" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="300" as="sourcePoint" />
+            <mxPoint x="650" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-25" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;μετακίνησηΠιονιούΣτηΦυλακή(παίκτης,θέσηΦυλακής)&lt;/font&gt;" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-11">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="470" y="330" as="sourcePoint" />
+            <mxPoint x="550" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-28" value="ενημέρωσηΚατάστασηΠαίκτη(παίκτης,&quot;Φυλακή&quot;)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="360" as="sourcePoint" />
+            <mxPoint x="650" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-29" value="&lt;font style=&quot;font-size: 10px;&quot;&gt;μετακίνησηΠιονιούΣτηΦυλακή(θέσηςΦυλακής)&lt;/font&gt;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="380" as="sourcePoint" />
+            <mxPoint x="390" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-30" value="alt" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="220" width="690" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-31" value="[τύποςΘέσης=&quot;ΠήγαινεΣτηΦυλακή&quot;]" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="220" width="80" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-32" value="Εμφάνιση Πιονιού Στη Φυλακή" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;" edge="1" parent="1" target="DJN-NzJyCzIiPwxfxdfg-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="240" y="400" as="sourcePoint" />
+            <mxPoint x="160" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DJN-NzJyCzIiPwxfxdfg-36" value="Ολοκλήρωση&lt;div&gt;Γύρου&lt;/div&gt;" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="440" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="500" y="440" />
+              <mxPoint x="500" y="460" />
+            </Array>
+            <mxPoint x="470" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
