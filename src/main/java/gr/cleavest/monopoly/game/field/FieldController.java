@@ -97,4 +97,12 @@ public class FieldController {
 
         return new int[]{houses, hotels};
     }
+
+    public int getUtilityCount(Player player) {
+        return (int) Arrays.stream(fields)
+                .filter(field -> field instanceof UtilityField)
+                .map(field -> (UtilityField) field)
+                .filter(utility -> utility.getOwner() != null && utility.getOwner().equals(player))
+                .count();
+    }
 }

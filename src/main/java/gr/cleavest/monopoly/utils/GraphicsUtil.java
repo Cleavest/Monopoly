@@ -234,6 +234,11 @@ public class GraphicsUtil {
         Stroke originalStroke = g2.getStroke();
         Object originalAntiAlias = g2.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
 
+        if (player.isBankrupt()) {
+            g2.setColor(Color.GRAY);
+            g2.fillRoundRect(x - 2, y - 2, width + 4, height + 4, 4, 4);
+        }
+
         // Ενεργοποίηση του anti-aliasing για λείες γραμμές και καμπύλες
         //g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -253,7 +258,7 @@ public class GraphicsUtil {
 // Μαύρο κείμενο για το όνομα του παίκτη
         g2.setFont(greekFont);
         g2.setColor(Color.BLACK);
-        g2.drawString("Παίκτης: " + "text", x + 15, y + 25);
+        g2.drawString("Παίκτης: ", x + 15, y + 25);
 
 // Χρώμα του παίκτη (μεγαλύτερος κύκλος με περίγραμμα)
         g2.setFont(greekFont);

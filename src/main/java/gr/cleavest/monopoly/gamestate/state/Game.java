@@ -17,6 +17,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Cleavest on 1/3/2025
@@ -36,6 +37,8 @@ public class Game extends Container {
     private List<Player> players = new ArrayList<>();
     private Square[] squares;
 
+    private boolean isGameOver;
+
     int[][] playerOffsets = {
             {5, 5},   // Παίκτης 1: (x + 5, y + 5)
             {5, 25},  // Παίκτης 2: (x + 25, y + 5)
@@ -52,6 +55,7 @@ public class Game extends Container {
         super(containerController);
         this.fieldController = new FieldController();
         this.nextPlayer = 0;
+        this.isGameOver = false;
 
         squares = new Square[fieldController.getFields().length];
 
@@ -61,12 +65,12 @@ public class Game extends Container {
             containerController.setContainer(ContainerController.MENU);
         }).setToggled(true));
 
-        Player first = new Player( Color.YELLOW);
-        Player second = new Player( Color.GREEN);
-        Player second2 = new Player( Color.RED);
-        players.add(first);
-        players.add(second);
-        players.add(second2);
+        // Player first = new Player( Color.YELLOW);
+        // Player second = new Player( Color.GREEN);
+        // Player second2 = new Player( Color.RED);
+        // players.add(first);
+        // players.add(second);
+        // players.add(second2);
 
         addComponent(new Button("Dice", 250,450 , 95,40).addHandler(button -> {
             firstDice = throwDie();
@@ -77,38 +81,57 @@ public class Game extends Container {
                 Player player = players.get(nextPlayer);
 
                 if (player.isJail()) {
-
-                    if (player.getRoundsInJail() > 2) {
+                    if (player.getRoundsInJail() >= 3) {
+                        // Αυτόματος έξοδος μετά από 3 γύρους
                         player.exitJail();
                         player.move(firstDice + secondDice);
+                    } else {
+                        // Αν ρίξει διπλό, βγαίνει από τη φυλακή
+                        if (firstDice == secondDice) {
+                            player.exitJail();
+                            player.move(firstDice + secondDice);
+                        } else {
+                            player.addRoundInJail();
+                        }
                     }
-
-                    player.addRoundInJail();
                 } else {
                     player.move(firstDice + secondDice);
-//                Field field = fieldController.getFields()[player.getPosition()];
-//                this.clearSecondComponents();
-//                field.stay(player, this, fieldController);
-                    //nextPlayer = (nextPlayer + 1) % players.size();
                 }
 
                 stay(player);
 
-                nextPlayer = (nextPlayer + 1) % players.size();
+
+                if (getActivePlayers().size() == 1 && !isGameOver) {
+                    isGameOver = true;
+                    button.setHidden(true);
+                }
+
+                nextPlayer = (nextPlayer + 1) % getActivePlayers().size();
 
             });
-        }));
+        }).setToggled(!isGameOver));
+
+        System.out.println(isGameOver + " is game over");
+
+
+        addComponent(new Button("Next", 250,250 , 95,40).addHandler(button -> {
+            containerController.setContainer(ContainerController.MENU);
+        }).setToggled(isGameOver));
 
 //        addComponent(new TestButton("test" ,250, 460, 120, 40).addHandler(button -> {
 //            System.out.println("test");
 //        }));
     }
 
+    public List<Player> getActivePlayers() {
+        return players.stream().filter(player -> !player.isBankrupt()).collect(Collectors.toList());
+    }
+
     public void setupPlayers(int value) {
         players.clear();
         Color[] colors = {Color.YELLOW, Color.GREEN, Color.RED, Color.BLUE};
         for (int i = 0; i < value; i++) {
-            players.add(new Player(colors[i]));
+            players.add(new Player(colors[i], fieldController));
         }
     }
 
@@ -309,5 +332,9 @@ public class Game extends Container {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public int getLastDiceRoll() {
+        return firstDice + secondDice;
     }
 }

@@ -13,11 +13,13 @@ public abstract class Component {
     public final int y;
     public final int width;
     public final int height;
+    private boolean hidden; 
     public Component(int x, int y, final int width, final int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.hidden = false;
     }
     public abstract void draw(Graphics2D graphics2D);
     public abstract void onClick() throws InterruptedException;
@@ -30,6 +32,14 @@ public abstract class Component {
         if (isHovered(e)) {
             onClick();
         }
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+
+    public boolean isHidden() {
+        return hidden;
     }
 
     public abstract void updateHoverState(MouseEvent e);

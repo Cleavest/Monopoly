@@ -7,6 +7,7 @@ import gr.cleavest.monopoly.component.Label;
 import gr.cleavest.monopoly.game.field.Field;
 import gr.cleavest.monopoly.game.field.ColorGroup;
 import gr.cleavest.monopoly.game.field.FieldController;
+import gr.cleavest.monopoly.game.field.Sellable;
 import gr.cleavest.monopoly.game.player.Player;
 import gr.cleavest.monopoly.gamestate.Container;
 import gr.cleavest.monopoly.utils.GraphicsUtil;
@@ -19,7 +20,7 @@ import java.util.List;
 /**
  * @author Cleavest on 2/3/2025
  */
-public class PropertyField extends Field {
+public class PropertyField extends Field implements Sellable {
 
     private Player owner;
     private final ColorGroup group;
@@ -131,6 +132,12 @@ public class PropertyField extends Field {
         this.owner = owner;
     }
 
+    @Override
+    public void resetOwner() {
+        this.owner = null;
+        this.propertyCount = 0;
+    }
+
     public Player getOwner() {
         return owner;
     }
@@ -141,6 +148,18 @@ public class PropertyField extends Field {
 
     public ColorGroup getGroup() {
         return group;
+    }
+
+    public int getHousePriceSell() {
+        return buildingCost * propertyCount;
+    }
+
+    public void changePropertyCount(int amount) {
+        this.propertyCount += amount;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
     @Override

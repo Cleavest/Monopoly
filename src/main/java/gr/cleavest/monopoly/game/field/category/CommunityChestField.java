@@ -78,7 +78,6 @@ public class CommunityChestField extends Field {
             }
         }),
         BLAST_MUSIC("Blasting music late at night? Your neighbors do not approve. GO TO JAIL.", (player,container,fieldController) -> {
-            //player.goToJail()
             player.goToJail();
         }),
         HELP_NEIGHBOR("You help your neighbor bring in her groceries. She makes you lunch to say thanks! COLLECT $20.", (player,container,fieldController) -> player.addBalance(20)),

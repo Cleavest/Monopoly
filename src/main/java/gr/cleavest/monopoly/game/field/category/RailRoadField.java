@@ -5,6 +5,7 @@ import gr.cleavest.monopoly.component.Button;
 import gr.cleavest.monopoly.component.Label;
 import gr.cleavest.monopoly.game.field.Field;
 import gr.cleavest.monopoly.game.field.FieldController;
+import gr.cleavest.monopoly.game.field.Sellable;
 import gr.cleavest.monopoly.game.player.Player;
 import gr.cleavest.monopoly.gamestate.Container;
 import gr.cleavest.monopoly.utils.ImageLoader;
@@ -15,12 +16,12 @@ import java.awt.image.BufferedImage;
 /**
  * @author Cleavest on 2/3/2025
  */
-public class RailRoadField extends Field {
+public class RailRoadField extends Field implements Sellable {
 
     private final BufferedImage image;
     private Player owner;
     private final String name;
-    private final int price;
+    private final int price = 200;
     private final int[] pricing = {0, 25,50,100,200};
 
     public RailRoadField(int positionId, String name) {
@@ -28,7 +29,25 @@ public class RailRoadField extends Field {
         this.image = ImageLoader.loadImage(Reference.TRAIN);
         this.name = name;
         this.owner = null;
-        this.price = 200;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+    
+
+    @Override
+    public void resetOwner() {
+        this.owner = null;
+    }
+    
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 
     @Override
@@ -97,10 +116,6 @@ public class RailRoadField extends Field {
         player.addBalance(-totalPrice);
 
         container.addSecondComponent(payed);
-    }
-
-    public Player getOwner() {
-        return owner;
     }
 
     @Override

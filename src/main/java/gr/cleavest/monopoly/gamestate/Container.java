@@ -25,8 +25,16 @@ public abstract class Container {
         this.secondComponents = new ArrayList<>();
     }
     public void drawComponent(Graphics2D graphics2D){
-        components.forEach(c -> c.draw(graphics2D));
-        secondComponents.forEach(c -> c.draw(graphics2D));
+        components.forEach(c -> {
+            if (!c.isHidden()) {
+                c.draw(graphics2D);
+            }
+        });
+        secondComponents.forEach(c -> {
+            if (!c.isHidden()) {
+                c.draw(graphics2D);
+            }
+        });
     }
     public void addComponent(Component component){
         components.add(component);

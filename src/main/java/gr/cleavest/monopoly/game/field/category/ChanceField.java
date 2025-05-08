@@ -8,9 +8,11 @@ import gr.cleavest.monopoly.gamestate.state.Game;
 import gr.cleavest.monopoly.gamestate.state.Recor;
 import gr.cleavest.monopoly.utils.ImageLoader;
 import gr.cleavest.monopoly.utils.Reference;
-
+import gr.cleavest.monopoly.component.Background;
+import gr.cleavest.monopoly.component.MultiLabel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 /**
  * @author Cleavest on 2/3/2025
@@ -18,15 +20,32 @@ import java.awt.image.BufferedImage;
 public class ChanceField extends Field {
 
     private BufferedImage image;
+    private final Random random;
 
     public ChanceField(int positionId) {
+        
         super(positionId);
         this.image = ImageLoader.loadImage(Reference.CHANCE);
+        this.random = new Random();
     }
 
     @Override
     public void stay(Player player, Container container, FieldController fieldController) {
+        Card drawnCard = Card.values()[random.nextInt(Card.values().length)];
+        drawnCard.execute(player, container, fieldController);
 
+        int startX = Reference.CORNER_SIZE + 1;
+        int startY = Reference.CORNER_SIZE + 1;
+        int width = Reference.BOARD_SIZE - Reference.CORNER_SIZE * 2 - 2;
+        Background background = new Background(startX, startY, width, 200);
+        container.addSecondComponent(background);
+
+
+        Font greekFont = new Font("Arial", Font.BOLD, 16);
+        MultiLabel multiLabel = new MultiLabel(drawnCard.message, startX + 20, startY + 20, width - 10);
+        multiLabel.setColor(Color.WHITE);
+        multiLabel.setFont(greekFont);
+        container.addSecondComponent(multiLabel);
     }
 
     @Override

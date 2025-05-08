@@ -5,9 +5,9 @@ import gr.cleavest.monopoly.component.Button;
 import gr.cleavest.monopoly.component.Label;
 import gr.cleavest.monopoly.game.field.Field;
 import gr.cleavest.monopoly.game.field.FieldController;
+import gr.cleavest.monopoly.game.field.Sellable;
 import gr.cleavest.monopoly.game.player.Player;
 import gr.cleavest.monopoly.gamestate.Container;
-import gr.cleavest.monopoly.utils.GraphicsUtil;
 import gr.cleavest.monopoly.utils.ImageLoader;
 import gr.cleavest.monopoly.utils.Reference;
 
@@ -28,33 +28,46 @@ public class JailField extends Field {
 
     @Override
     public void stay(Player player, Container container, FieldController fieldController) {
+
+        if (!player.isJail()) return;
+
         int startX = Reference.CORNER_SIZE + 1;
         int startY = Reference.CORNER_SIZE + 1;
         Background background = new Background(startX, startY, Reference.BOARD_SIZE - Reference.CORNER_SIZE * 2 - 2, 200);
         container.addSecondComponent(background);
 
-        int split = 20;
+        int split = 30;
         int splitX = 10;
         int y = startY + split;
 
         Label text = new Label("Prison", startX + 10, y);
         y+= split;
 
+        Label info = new Label("You are in jail. You can:", startX + 10, y);
+        y+= split;
+
         Button pay = new Button("pay 50 $", startX + splitX,y,100,30)
                 .addHandler(event -> {
                     player.addBalance(-50);
-                    player.exitJail();
-                }).setToggled(player.getBalance() > 50);
+                        player.exitJail();
+
+                        container.addUpdateQueue(() -> {
+                            container.clearSecondComponents();
+                        });
+                }).setToggled(player.getBalance() >= 50);
         y+= split;
 
         Button useCard = new Button("use card (" +  player.getJailCard() +")", startX + splitX,y,100,30)
                 .addHandler(event -> {
                     player.changeJailCard(-1);
-                    player.exitJail();
+                        player.exitJail();
+                        container.clearSecondComponents();
                 })
                 .setToggled(player.getJailCard() > 0);
+        y+= split;
 
         container.addSecondComponent(text);
+        container.addSecondComponent(info);
         container.addSecondComponent(pay);
         container.addSecondComponent(useCard);
     }
