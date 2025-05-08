@@ -22,5 +22,4 @@
 ![Διάγραμμα Περιπτώσεων Χρήσης](./USE_CASE_SEQUENCE_DIAGRAMMS
 /MonopolyUseCase.svg)
 
-![Διάγραμμα Περιπτώσεων Χρήσης](./USE_CASE_SEQUENCE_DIAGRAMMS/ΔΙΑΓΡΑΜΜΑ_USE_CASE
-/MonopolyUseCase.svg)
+![Διάγραμμα Περιπτώσεων Χρήσης](./USE_CASE_SEQUENCE_DIAGRAMMS/ΔΙΑΓΡΑΜΜΑ_USE_CASE/MonopolyUseCase.svg)
