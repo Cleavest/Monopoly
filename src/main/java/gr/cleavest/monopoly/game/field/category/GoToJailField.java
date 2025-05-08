@@ -26,7 +26,7 @@ public class GoToJailField extends Field {
 
     @Override
     public void stay(Player player, Container container, FieldController fieldController) {
-
+        player.goToJail();
     }
 
     @Override

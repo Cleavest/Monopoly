@@ -1,6 +1,7 @@
 package gr.cleavest.monopoly.gamestate.state;
 
 import gr.cleavest.monopoly.component.Button;
+import gr.cleavest.monopoly.component.Component;
 import gr.cleavest.monopoly.component.TestButton;
 import gr.cleavest.monopoly.game.field.Field;
 import gr.cleavest.monopoly.game.field.FieldController;
@@ -75,18 +76,46 @@ public class Game extends Container {
 
                 Player player = players.get(nextPlayer);
 
-                player.move(firstDice + secondDice);
+                if (player.isJail()) {
 
-                Field field = fieldController.getFields()[player.getPosition()];
-                this.clearSecondComponents();
-                field.stay(player, this, fieldController);
+                    if (player.getRoundsInJail() > 2) {
+                        player.exitJail();
+                        player.move(firstDice + secondDice);
+                    }
+
+                    player.addRoundInJail();
+                } else {
+                    player.move(firstDice + secondDice);
+//                Field field = fieldController.getFields()[player.getPosition()];
+//                this.clearSecondComponents();
+//                field.stay(player, this, fieldController);
+                    //nextPlayer = (nextPlayer + 1) % players.size();
+                }
+
+                stay(player);
+
                 nextPlayer = (nextPlayer + 1) % players.size();
+
             });
         }));
 
 //        addComponent(new TestButton("test" ,250, 460, 120, 40).addHandler(button -> {
 //            System.out.println("test");
 //        }));
+    }
+
+    public void setupPlayers(int value) {
+        players.clear();
+        Color[] colors = {Color.YELLOW, Color.GREEN, Color.RED, Color.BLUE};
+        for (int i = 0; i < value; i++) {
+            players.add(new Player(colors[i]));
+        }
+    }
+
+    public void stay(Player player) {
+        Field field = fieldController.getFields()[player.getPosition()];
+        this.clearSecondComponents();
+        field.stay(player, this, fieldController);
     }
 
     private int throwDie()

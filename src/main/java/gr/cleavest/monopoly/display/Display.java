@@ -28,6 +28,7 @@ public class Display extends JPanel implements Runnable, MouseListener,MouseMoti
 
         thread = new Thread(this);
         thread.start();
+
     }
 //    public void addNotify(){
 //        super.addNotify();
@@ -40,7 +41,7 @@ public class Display extends JPanel implements Runnable, MouseListener,MouseMoti
 
     public void init() {
         running = true;
-        this.containerController = new ContainerController();
+        this.containerController = new ContainerController(this);
     }
     @Override
     public void run() {
@@ -72,6 +73,7 @@ public class Display extends JPanel implements Runnable, MouseListener,MouseMoti
     private void update() {
         containerController.update();
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
     }

@@ -34,4 +34,11 @@ public class Reference {
     public static final int startFieldInteract = BOARD_SIZE + 40;
     public static final int AVATAR_HEIGHT = 75;
     public static final Font buttonFont = new Font("Arial", Font.BOLD, 10);
+
+    public static final Color normalColor = new Color(66, 133, 244);    // #4285f4
+    public static final Color lighterColor = new Color(90, 149, 245);   // #5a95f5
+    public static final Color hoverColor = new Color(114, 165, 247);    // #72a5f7
+    public static final Color hoverLighterColor = new Color(138, 181, 249); // #8ab5f9
+
+    public static final int MAX_PLAYERS = 4;
 }

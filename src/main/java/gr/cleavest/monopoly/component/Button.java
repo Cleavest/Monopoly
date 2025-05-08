@@ -1,5 +1,7 @@
 package gr.cleavest.monopoly.component;
 
+import gr.cleavest.monopoly.utils.Reference;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
@@ -27,7 +29,7 @@ public class Button extends Component {
     @Override
     public void updateHoverState(MouseEvent e) {
         boolean wasHovered = isHovered;
-        isHovered = isHovered(e);
+        isHovered = isHovered(e) && isToggled;
     }
 
     @Override
@@ -37,16 +39,12 @@ public class Button extends Component {
 
 
         // Χρώματα για το κουμπί - #4285f4 κανονικό, #5a95f5 ανοιχτότερο για hover
-        Color normalColor = new Color(66, 133, 244);    // #4285f4
-        Color lighterColor = new Color(90, 149, 245);   // #5a95f5
-        Color hoverColor = new Color(114, 165, 247);    // #72a5f7
-        Color hoverLighterColor = new Color(138, 181, 249); // #8ab5f9
 
         Color toggle = new Color(112, 112, 112);
 
         // Επιλογή χρωμάτων με βάση την κατάσταση hover
-        Color baseColor = isHovered ? hoverColor : normalColor;
-        Color topColor = isHovered ? hoverLighterColor : lighterColor;
+        Color baseColor = isHovered ? Reference.hoverColor : Reference.normalColor;
+        Color topColor = isHovered ? Reference.hoverLighterColor : Reference.lighterColor;
 
         if (!isToggled) {
             baseColor = toggle;

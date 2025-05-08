@@ -24,7 +24,8 @@ public class MenuScreen extends Container {
         // Κουμπί παιχνιδιού με πράσινο χρώμα
         Button playButton = new Button("Νέο Παιχνίδι", 100, 200, 250, 50);
         playButton.addHandler(button -> {
-            containerController.setContainer(ContainerController.GAME);
+            //containerController.setContainer(ContainerController.GAME);
+            containerController.setContainer(ContainerController.CREATE_GAME);
         });
 
         // Κουμπί επιλογών με μπλε χρώμα

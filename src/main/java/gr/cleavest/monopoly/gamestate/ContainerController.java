@@ -1,5 +1,6 @@
 package gr.cleavest.monopoly.gamestate;
 
+import gr.cleavest.monopoly.display.Display;
 import gr.cleavest.monopoly.gamestate.state.*;
 import gr.cleavest.monopoly.gamestate.state.Menu;
 
@@ -15,18 +16,31 @@ public class ContainerController {
 
     public static final int MENU = 0;
     public static final int GAME = 1;
+    public static final int CREATE_GAME = 2;
 
     private final List<Container> states;
     private int currentState;
+    private Display display;
 
-    public ContainerController() {
+    public ContainerController(Display display) {
+        this.display = display;
         states = new ArrayList<>();
         add(new MenuScreen(this));
         add(new Game(this));
+        add(new CreateGame(this));
         add(new Test(this));
         add(new Recor(this));
         setContainer(MENU);
     }
+
+    public int getWidth(){
+        return display.getWidth();
+    }
+
+    public int getHeight(){
+        return display.getHeight();
+    }
+
 
     public void add(Container container) {
         states.add(container);
@@ -34,6 +48,10 @@ public class ContainerController {
 
     public void setContainer(int state) {
         currentState = state;
+    }
+
+    public Container getContainer(int state) {
+        return states.get(state);
     }
 
     public void update() {

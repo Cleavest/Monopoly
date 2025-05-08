@@ -44,9 +44,6 @@ public class CommunityChestField extends Field {
 
 
         Font greekFont = new Font("Arial", Font.BOLD, 16);
-//        List<String> text = TextWrapper.wrapText(drawnCard, width);
-//        text.setColor(Color.WHITE);
-//        container.addSecondComponent(text);
         MultiLabel multiLabel = new MultiLabel(drawnCard.message, startX + 20, startY + 20, width - 10);
         multiLabel.setColor(Color.WHITE);
         multiLabel.setFont(greekFont);
@@ -71,20 +68,18 @@ public class CommunityChestField extends Field {
         RESCUE_PUPPY("You rescue a puppy – and you feel rescued, too! GET OUT OF JAIL FREE.", (player,container,fieldController) -> player.changeJailCard(1)),
         STREET_PARTY("You organize a street party so people on your road can get to know each other. COLLECT $10 FROM EACH PLAYER.", (player,container,fieldController) -> {
             if (container instanceof Game game) {
-                int money = 0;
-
-                for (Player gamePlayer : game.getPlayers()) {
-                    if (player != gamePlayer) {
-                        money+= 10;
-                        gamePlayer.addBalance(-10);
-                    }
-                }
+                int money = game.getPlayers().stream()
+                        .filter(gamePlayer -> player != gamePlayer)
+                        .peek(gamePlayer -> gamePlayer.addBalance(-10))
+                        .mapToInt(gamePlayer -> 10)
+                        .sum();
 
                 player.addBalance(money);
             }
         }),
         BLAST_MUSIC("Blasting music late at night? Your neighbors do not approve. GO TO JAIL.", (player,container,fieldController) -> {
             //player.goToJail()
+            player.goToJail();
         }),
         HELP_NEIGHBOR("You help your neighbor bring in her groceries. She makes you lunch to say thanks! COLLECT $20.", (player,container,fieldController) -> player.addBalance(20)),
         BUILD_PLAYGROUND("You help build a new school playground – then you get to test the slide! COLLECT $100.", (player,container,fieldController) -> player.addBalance(100)),

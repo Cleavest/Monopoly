@@ -1,5 +1,8 @@
 package gr.cleavest.monopoly.game.field.category;
 
+import gr.cleavest.monopoly.component.Background;
+import gr.cleavest.monopoly.component.Button;
+import gr.cleavest.monopoly.component.Label;
 import gr.cleavest.monopoly.game.field.Field;
 import gr.cleavest.monopoly.game.field.FieldController;
 import gr.cleavest.monopoly.game.player.Player;
@@ -25,7 +28,35 @@ public class JailField extends Field {
 
     @Override
     public void stay(Player player, Container container, FieldController fieldController) {
+        int startX = Reference.CORNER_SIZE + 1;
+        int startY = Reference.CORNER_SIZE + 1;
+        Background background = new Background(startX, startY, Reference.BOARD_SIZE - Reference.CORNER_SIZE * 2 - 2, 200);
+        container.addSecondComponent(background);
 
+        int split = 20;
+        int splitX = 10;
+        int y = startY + split;
+
+        Label text = new Label("Prison", startX + 10, y);
+        y+= split;
+
+        Button pay = new Button("pay 50 $", startX + splitX,y,100,30)
+                .addHandler(event -> {
+                    player.addBalance(-50);
+                    player.exitJail();
+                }).setToggled(player.getBalance() > 50);
+        y+= split;
+
+        Button useCard = new Button("use card (" +  player.getJailCard() +")", startX + splitX,y,100,30)
+                .addHandler(event -> {
+                    player.changeJailCard(-1);
+                    player.exitJail();
+                })
+                .setToggled(player.getJailCard() > 0);
+
+        container.addSecondComponent(text);
+        container.addSecondComponent(pay);
+        container.addSecondComponent(useCard);
     }
 
     @Override

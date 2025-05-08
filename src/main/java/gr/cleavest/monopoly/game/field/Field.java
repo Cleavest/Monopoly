@@ -13,7 +13,7 @@ import java.awt.geom.AffineTransform;
  */
 public abstract class Field {
 
-    int positionId;
+    private int positionId;
 
     public Field (int positionId) {
         this.positionId = positionId;
@@ -35,6 +35,9 @@ public abstract class Field {
         g2.setStroke(originalStroke);
     }
 
+    public int getPositionId() {
+        return positionId;
+    }
 
     public int getWidth() {
         return Reference.SQUARE_WIDTH;

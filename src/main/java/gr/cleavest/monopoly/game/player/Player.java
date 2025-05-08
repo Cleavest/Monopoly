@@ -1,5 +1,7 @@
 package gr.cleavest.monopoly.game.player;
 
+import gr.cleavest.monopoly.game.field.FieldController;
+import gr.cleavest.monopoly.gamestate.state.Game;
 import gr.cleavest.monopoly.utils.Reference;
 
 import java.awt.*;
@@ -13,12 +15,16 @@ public class Player {
     private int positionId;
     private int balance;
     private int jailCard;
+    private boolean isJail;
+    private int roundsInJail;
 
     public Player(Color color) {
         this.positionId = 0;
         this.color = color;
         this.balance = 1000;
         this.jailCard = 0;
+        this.isJail = false;
+        this.roundsInJail = 0;
     }
 
     public void draw(Graphics2D g2 , int x , int y, int width, int height) {
@@ -54,6 +60,11 @@ public class Player {
 //        }
     }
 
+    public void moveTo(int value, Game game) {
+        positionId = value;
+        game.stay(this);
+    }
+
     public int getPosition() {
         return positionId;
     }
@@ -72,5 +83,36 @@ public class Player {
 
     public Color getColor() {
         return color;
+    }
+
+    public void goToJail() {
+        this.isJail = true;
+        this.positionId = 10;
+        this.roundsInJail = 0;
+    }
+
+    public void exitJail(){
+        this.isJail = false;
+        this.roundsInJail = 0;
+    }
+
+    public void addRoundInJail() {
+        roundsInJail += 1;
+    }
+
+    public int getRoundsInJail() {
+        return roundsInJail;
+    }
+
+    public int getJailCard() {
+        return jailCard;
+    }
+
+    public boolean isJail() {
+        return isJail;
+    }
+
+    public void setJail(boolean jail) {
+        isJail = jail;
     }
 }

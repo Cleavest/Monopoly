@@ -5,6 +5,8 @@ import gr.cleavest.monopoly.game.player.Player;
 import gr.cleavest.monopoly.utils.Reference;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Cleavest on 2/3/2025
@@ -61,7 +63,7 @@ public class FieldController {
     }
 
     public void add(Field field) {
-        fields[field.positionId] = field;
+        fields[field.getPositionId()] = field;
     }
 
     public long getOwnerTrain(Player player) {
@@ -70,6 +72,10 @@ public class FieldController {
 
     public boolean hasAllGroup(PropertyField f) {
         return f.getGroup().getCount() == Arrays.stream(fields).filter(field -> field instanceof RailRoadField && ((RailRoadField) field).getOwner() == f.getOwner()).count();
+    }
+
+    public List<Field> getRailRoadFields() {
+        return Arrays.stream(fields).filter(field -> field instanceof RailRoadField).toList();
     }
 
     public int[] getInfoProperties(Player player) {

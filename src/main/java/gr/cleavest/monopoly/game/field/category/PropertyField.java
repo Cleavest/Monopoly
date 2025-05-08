@@ -83,31 +83,31 @@ public class PropertyField extends Field {
                 container.addSecondComponent(max);
                 y+= split;
                 return;
-            }
+            } else if (fieldController.hasAllGroup(this)) {
+                Label building = new Label( "Χτίσιμο ", startX + splitX, y);
+                building.setColor(Color.WHITE);
+                y+= split;
 
-            Label building = new Label( "Χτίσιμο ", startX + splitX, y);
-            building.setColor(Color.WHITE);
-            y+= split;
+                String text = propertyCount == 4 ? "Ξενοδοχείο" : "Σπίτι " + (propertyCount + 1);
+                Label house = new Label(text + " Τιμή " +  buildingCost + "€", startX + splitX, y);
+                house.setColor(Color.WHITE);
+                y+= split;
 
-            String text = propertyCount == 4 ? "Ξενοδοχείο" : "Σπίτι " + (propertyCount + 1);
-            Label house = new Label(text + " Τιμή " +  buildingCost + "€", startX + splitX, y);
-            house.setColor(Color.WHITE);
-            y+= split;
-
-            Button button = new Button("Buy", startX + splitX,y,100,30);
-            button.addHandler(btn -> {
-                player.addBalance(-buildingCost);
-                propertyCount++;
-                container.addUpdateQueue(() -> {
-                    container.clearSecondComponents();
-                    stay(player, container, fieldController);
+                Button button = new Button("Buy", startX + splitX,y,100,30);
+                button.addHandler(btn -> {
+                    player.addBalance(-buildingCost);
+                    propertyCount++;
+                    container.addUpdateQueue(() -> {
+                        container.clearSecondComponents();
+                        stay(player, container, fieldController);
+                    });
                 });
-            });
-            button.setToggled(player.getBalance() >= buildingCost);
+                button.setToggled(player.getBalance() >= buildingCost);
 
-            container.addSecondComponent(button);
-            container.addSecondComponent(house);
-            container.addSecondComponent(building);
+                container.addSecondComponent(button);
+                container.addSecondComponent(house);
+                container.addSecondComponent(building);
+            }
             //upgrade
             return;
         }
