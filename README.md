@@ -47,5 +47,34 @@
 
 ![Class Diagram](./images/diagram.png)
 
+## 🖼️ Screenshots
+
+### Αρχικό Μενού
+![menu](screenshot/menu.png)
+
+### Έναρξη Παιχνιδιού
+![start_game](screenshot/start_game.png)
+
+### Αρχικοποίηση Παιχνιδιού
+![init_game](screenshot/init_game.png)
+
+### Ρίψη Ζαριού
+![roll_dice_1](screenshot/roll_dice_1.png)
+
+### Επιλογή Αγοράς Ιδιοκτησίας
+![pre_buy_property](screenshot/pre_buy_property.png)
+![buy_property](screenshot/buy_property.png)
+
+### Πληρωμή Ενοικίου
+![pay](screenshot/pay.png)
+
+### Κάρτα Ευκαιρίας (Chance)
+![chance_chest](screenshot/chance_chest.png)
+
+### Φόρος
+![tax](screenshot/tax.png)
+
+---
+
 ## Youtube
 (https://youtu.be/0ckc7-Oat9E)
