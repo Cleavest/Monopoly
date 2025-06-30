@@ -15,7 +15,7 @@
 
 ## 📊 Gantt Chart
 
-![Gantt Chart](./images/gantt_chart.png)
+![Gantt Chart](./images/gantt.png)
 
 ## 🧩 Διάγραμμα Περιπτώσεων Χρήσης
 
